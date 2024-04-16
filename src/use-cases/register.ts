@@ -1,5 +1,4 @@
 import { UserAlreadyExistsError } from "@/error/user-already-exists-error";
-import { prisma } from "@/lib/prisma";
 import { UsersRepository } from "@/repositories/prisma/users-repository";
 import { hash } from "bcryptjs";
 
