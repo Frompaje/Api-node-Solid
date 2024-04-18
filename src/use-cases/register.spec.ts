@@ -1,7 +1,7 @@
+import { InMemoryUsersRepository } from "@/repositories/prisma/in-memory/in-memory-users-repository";
 import { compare } from "bcryptjs";
 import { describe, expect, it } from "vitest";
 import { RegisterUseCase } from "./register";
-import { InMemoryUsersRepository } from "@/repositories/prisma/in-memory/in-memory-users-repository";
 import { UserAlreadyExistsError } from "@/error/user-already-exists-error";
 
 describe("Register Use Case", () => {
@@ -34,7 +34,7 @@ describe("Register Use Case", () => {
     expect(isPasswordCorrectlyHashed).toBe(true);
   });
 
-  it.skip("should no tbe able to register with same email twice", async () => {
+  it("should no tbe able to register with same email twice", async () => {
     const usersRepository = new InMemoryUsersRepository();
     const registerUseCase = new RegisterUseCase(usersRepository);
 
@@ -46,12 +46,12 @@ describe("Register Use Case", () => {
       password: "481523321",
     });
 
-    // await expect(() => {
-    //   registerUseCase.execute({
-    //     name: "jon",
-    //     email: email,
-    //     password: "481523321",
-    //   });
-    // }).rejects.toBeInstanceOf(UserAlreadyExistsError);
+    await expect(() => {
+      return registerUseCase.execute({
+        name: "jon",
+        email: email,
+        password: "481523321",
+      });
+    }).rejects.toBeInstanceOf(UserAlreadyExistsError);
   });
 });
