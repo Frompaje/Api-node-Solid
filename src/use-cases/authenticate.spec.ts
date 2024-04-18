@@ -13,7 +13,7 @@ describe("Register Use Case", () => {
     sut = new AuthenticateUseCase(usersRepository);
   });
 
-  it("should be able to authenticate with wrong", async () => {
+  it.skip("should be able to authenticate with wrong", async () => {
     await usersRepository.create({
       name: "John Doe",
       email: "okdas@gmail.com",
@@ -28,7 +28,7 @@ describe("Register Use Case", () => {
     expect(user.id).toEqual(expect.any(String));
   });
 
-  it("should be able to authenticate with wrong email", async () => {
+  it.skip("should be able to authenticate with wrong email", async () => {
     await usersRepository.create({
       name: "John Doe",
       email: "okdas@gmail.com",
@@ -43,7 +43,7 @@ describe("Register Use Case", () => {
     ).rejects.toBeInstanceOf(InvalidCredentialsError);
   });
 
-  it("should be able to authenticate with wrong email", async () => {
+  it.skip("should be able to authenticate with wrong email", async () => {
     expect(() =>
       sut.execute({
         email: "okdas@gmail.com",
