@@ -28,7 +28,7 @@ describe("Get User Profile Use Case", () => {
   });
 
   it("should be able to get user profile", async () => {
-    expect(() =>
+    await expect(() =>
       sut.execute({
         userId: "Non-existing-id",
       })
