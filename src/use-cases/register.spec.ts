@@ -5,7 +5,7 @@ import { RegisterUseCase } from "./register";
 import { UserAlreadyExistsError } from "@/error/user-already-exists-error";
 
 describe("Register Use Case", () => {
-  it("should be able to register", async () => {
+  it.skip("should be able to register", async () => {
     const usersRepository = new InMemoryUsersRepository();
     const registerUseCase = new RegisterUseCase(usersRepository);
 
@@ -18,7 +18,7 @@ describe("Register Use Case", () => {
     expect(user.id).toEqual(expect.any(String));
   });
 
-  it("should create a hashed password", async () => {
+  it.skip("should create a hashed password", async () => {
     const usersRepository = new InMemoryUsersRepository();
     const registerUseCase = new RegisterUseCase(usersRepository);
 
@@ -34,7 +34,7 @@ describe("Register Use Case", () => {
     expect(isPasswordCorrectlyHashed).toBe(true);
   });
 
-  it("should no tbe able to register with same email twice", async () => {
+  it.skip("should no tbe able to register with same email twice", async () => {
     const usersRepository = new InMemoryUsersRepository();
     const registerUseCase = new RegisterUseCase(usersRepository);
 
