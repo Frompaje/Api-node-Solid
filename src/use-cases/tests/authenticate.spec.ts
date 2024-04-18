@@ -2,7 +2,7 @@ import { InvalidCredentialsError } from "@/error/invalid-credentials-error";
 import { InMemoryUsersRepository } from "@/repositories/prisma/in-memory/in-memory-users-repository";
 import { hash } from "bcryptjs";
 import { beforeEach, describe, expect, it } from "vitest";
-import { AuthenticateUseCase } from "./authenticate";
+import { AuthenticateUseCase } from "../authenticate";
 
 let usersRepository: InMemoryUsersRepository;
 let sut: AuthenticateUseCase;

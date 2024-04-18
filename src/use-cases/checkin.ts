@@ -1,8 +1,5 @@
-import { InvalidCredentialsError } from "@/error/invalid-credentials-error";
-import { CheckInsRepository } from "@/repositories/check-ins-repository";
-import { UsersRepository } from "@/repositories/prisma/users-repository";
-import { CheckIn, User } from "@prisma/client";
-import { compare } from "bcryptjs";
+import { CheckInsRepository } from "@/repositories/prisma/check-ins-repository";
+import { CheckIn } from "@prisma/client";
 
 interface CheckInUseCaseRequest {
   userId: string;
@@ -19,6 +16,15 @@ export class CheckInUseCase {
     userId,
     gymId,
   }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
+    const checkInOnSameDay = await this.checkInsRepository.findByUserInOnDate(
+      userId,
+      new Date()
+    );
+
+    if (checkInOnSameDay) {
+      throw new Error();
+    }
+
     const checkIn = await this.checkInsRepository.create({
       gym_id: gymId,
       user_id: userId,
