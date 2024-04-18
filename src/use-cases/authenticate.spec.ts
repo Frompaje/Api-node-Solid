@@ -1,15 +1,19 @@
+import { InvalidCredentialsError } from "@/error/invalid-credentials-error";
 import { InMemoryUsersRepository } from "@/repositories/prisma/in-memory/in-memory-users-repository";
 import { hash } from "bcryptjs";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { AuthenticateUseCase } from "./authenticate";
-import { UsersRepository } from "@/repositories/prisma/users-repository";
-import { InvalidCredentialsError } from "@/error/invalid-credentials-error";
+
+let usersRepository: InMemoryUsersRepository;
+let sut: AuthenticateUseCase;
 
 describe("Register Use Case", () => {
-  it("should be able to authenticate with wrong", async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticateUseCase(usersRepository);
+  beforeEach(() => {
+    usersRepository = new InMemoryUsersRepository();
+    sut = new AuthenticateUseCase(usersRepository);
+  });
 
+  it("should be able to authenticate with wrong", async () => {
     await usersRepository.create({
       name: "John Doe",
       email: "okdas@gmail.com",
@@ -25,9 +29,6 @@ describe("Register Use Case", () => {
   });
 
   it("should be able to authenticate with wrong email", async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticateUseCase(usersRepository);
-
     await usersRepository.create({
       name: "John Doe",
       email: "okdas@gmail.com",
@@ -43,9 +44,6 @@ describe("Register Use Case", () => {
   });
 
   it("should be able to authenticate with wrong email", async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticateUseCase(usersRepository);
-
     expect(() =>
       sut.execute({
         email: "okdas@gmail.com",
