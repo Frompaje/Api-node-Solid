@@ -1,4 +1,4 @@
-import { InMemoryCheckInsRepository } from "@/repositories/prisma/in-memory/in-memory-check-ins-repository";
+import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-check-ins-repository";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ValidateCheckInUseCase } from "../validate-check-in";
 import { ResourceNotFoundError } from "@/error/resource-not-found-error";

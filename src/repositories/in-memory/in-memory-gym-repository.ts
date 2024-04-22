@@ -1,8 +1,10 @@
-import { Gym, Prisma } from "@prisma/client";
-import { FindManynearbyParams, GymsRepository } from "../gyms-repository";
-import { randomUUID } from "crypto";
+import {
+  FindManynearbyParams,
+  GymsRepository,
+} from "@/repositories/gyms-repository";
 import { getDistanceBetweenCoordinates } from "@/use-cases/utils/get-distance-between-coordinates";
-import { disconnect } from "process";
+import { Gym, Prisma } from "@prisma/client";
+import { randomUUID } from "crypto";
 
 export class InMemoryGymsRepository implements GymsRepository {
   public items: Gym[] = [];

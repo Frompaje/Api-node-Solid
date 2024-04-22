@@ -1,7 +1,6 @@
 import { LateCheckInValidationError } from "@/error/late-check-in-validation-error";
 import { ResourceNotFoundError } from "@/error/resource-not-found-error";
 import { CheckInsRepository } from "@/repositories/prisma/check-ins-repository";
-import { GymsRepository } from "@/repositories/prisma/gyms-repository";
 import { CheckIn } from "@prisma/client";
 import dayjs from "dayjs";
 
