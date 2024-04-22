@@ -1,4 +1,4 @@
-import { InMemoryGymsRepository } from "@/repositories/prisma/in-memory/in-memory-gym-repository";
+import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gym-repository";
 import { beforeEach, describe, expect, it } from "vitest";
 import { SearchGymUseCase } from "../search-gyms";
 

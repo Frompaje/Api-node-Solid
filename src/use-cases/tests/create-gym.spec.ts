@@ -1,7 +1,5 @@
-import { InMemoryUsersRepository } from "@/repositories/prisma/in-memory/in-memory-users-repository";
+import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gym-repository";
 import { beforeEach, describe, expect, it } from "vitest";
-import { RegisterUseCase } from "../register";
-import { InMemoryGymsRepository } from "@/repositories/prisma/in-memory/in-memory-gym-repository";
 import { CreateGymUseCase } from "../create-gym";
 
 let gymsRepository: InMemoryGymsRepository;
