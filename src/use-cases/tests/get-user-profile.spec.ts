@@ -1,7 +1,7 @@
 import { ResourceNotFoundError } from "@/error/resource-not-found-error";
-import { InMemoryUsersRepository } from "@/repositories/prisma/in-memory/in-memory-users-repository";
+import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository";
 import { beforeEach, describe, expect, it } from "vitest";
-import { GetUserProfileUseCase } from "../factories/get-user-profile";
+import { GetUserProfileUseCase } from "../get-user-profile";
 import { hash } from "bcryptjs";
 
 let usersRepository: InMemoryUsersRepository;
