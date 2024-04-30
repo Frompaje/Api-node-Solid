@@ -26,7 +26,7 @@ describe("Refresh Token (e2e)", () => {
 
     const response = await request(app.server)
       .patch("/token/refresh")
-      .set("Cookie", cookies)
+      .set("Cookie", "cookies")
       .send();
 
     expect(response.get("Set-Cookie")).toEqual([
