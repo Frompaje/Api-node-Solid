@@ -1,5 +1,4 @@
 import { InvalidCredentialsError } from "@/error/invalid-credentials-error";
-import { AuthenticateUseCase } from "@/use-cases/authenticate";
 import { makeAuthenticateUseCase } from "@/use-cases/factories/make-authenticate-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
@@ -31,7 +30,26 @@ export async function authenticate(
         },
       }
     );
-    return reply.status(200).send({ token });
+
+    const refreshToken = await reply.jwtSign(
+      {},
+      {
+        sign: {
+          sub: user.id,
+          expiresIn: "7d",
+        },
+      }
+    );
+
+    return reply
+      .setCookie("refreshToken", refreshToken, {
+        path: "/",
+        secure: true,
+        sameSite: true,
+        httpOnly: true,
+      })
+      .status(200)
+      .send({ token });
   } catch (err) {
     console.log(err);
     if (err instanceof InvalidCredentialsError) {

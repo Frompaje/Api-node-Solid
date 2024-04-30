@@ -5,13 +5,21 @@ import { gymsRouters } from "./http/controllers/gyms/routers";
 import { ZodError } from "zod";
 import { env } from "./env";
 import { checkInsRouters } from "./http/controllers/check-ins/routers";
+import fastifyCookie from "@fastify/cookie";
 
 export const app = fastify();
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
+  cookie: {
+    cookieName: "refreshToken",
+    signed: false,
+  },
+  sign: {
+    expiresIn: "10m",
+  },
 });
-
+app.register(fastifyCookie);
 app.register(usersRouters);
 app.register(gymsRouters);
 app.register(checkInsRouters);
